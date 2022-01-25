@@ -40,35 +40,19 @@ class TenImageGenerator extends CollageGenerator
         $height = config('collage.image.height');
         $padding = config('collage.image.padding');
 
-        $one = $this->images->get(0);
-        $this->canvas->insert($one->fit($width, $height), 'top-left', $padding, $padding);
+        $imageCount = 0;
+        $lineCount = 0;
 
-        $two = $this->images->get(1);
-        $this->canvas->insert($two->fit($width, $height), 'top-left', $padding + 362 + $padding, $padding);
+        for (; $imageCount < 5; $imageCount++, $lineCount++) {
+            $image = $this->images->get($imageCount);
+            $this->canvas->insert($image->fit($width, $height), 'top-left', $padding + $width * $lineCount + $padding * $lineCount, $padding);
+        }
 
-        $three = $this->images->get(2);
-        $this->canvas->insert($three->fit($width, $height), 'top-left', $padding + 362 * 2 + $padding * 2, $padding);
-
-        $four = $this->images->get(3);
-        $this->canvas->insert($four->fit($width, $height), 'top-left', $padding + 362 * 3 + $padding * 3, $padding);
-
-        $fifth = $this->images->get(4);
-        $this->canvas->insert($fifth->fit($width, $height), 'top-left', $padding + 362 * 4 + $padding * 4, $padding);
-
-        $sixth = $this->images->get(5);
-        $this->canvas->insert($sixth->fit($width, $height), 'bottom-left', $padding, $padding);
-
-        $seventh = $this->images->get(6);
-        $this->canvas->insert($seventh->fit($width, $height), 'bottom-left', $padding + 362 + $padding, $padding);
-
-        $eighth = $this->images->get(7);
-        $this->canvas->insert($eighth->fit($width, $height), 'bottom-left', $padding + 362 * 2 + $padding * 2, $padding);
-
-        $ninth = $this->images->get(8);
-        $this->canvas->insert($ninth->fit($width, $height), 'bottom-left', $padding + 362 * 3 + $padding * 3, $padding);
-
-        $tenth = $this->images->get(9);
-        $this->canvas->insert($tenth->fit($width, $height), 'bottom-left', $padding + 362 * 4 + $padding * 4, $padding);
+        $lineCount = 0;
+        for (; $imageCount < 10; $imageCount++, $lineCount++) {
+            $tenth = $this->images->get($imageCount);
+            $this->canvas->insert($tenth->fit($width, $height), 'bottom-left', $padding + $width * $lineCount + $padding * $lineCount, $padding);
+        }
     }
 
     /**
